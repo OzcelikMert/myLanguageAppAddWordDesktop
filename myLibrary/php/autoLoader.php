@@ -17,8 +17,8 @@ class AutoLoader {
 
     public function __construct() {
         $document_root = $_SERVER["DOCUMENT_ROOT"];
+        print_r($_SERVER);
         $this->paths = array(
-            "$document_root/___/IQ",
             "$document_root/public",
             $document_root
         );
