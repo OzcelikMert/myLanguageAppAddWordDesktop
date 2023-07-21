@@ -1,6 +1,8 @@
 <?php
 namespace myLibrary\php;
 
+require_once "projectConfig.php";
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -17,11 +19,14 @@ class AutoLoader {
 
     public function __construct() {
         $document_root = $_SERVER["DOCUMENT_ROOT"];
-        print_r($_SERVER);
         $this->paths = array(
             "$document_root/public",
             $document_root
         );
+
+        if(!empty(ProjectConfig::projectRootName)){
+            $this->paths[] = ProjectConfig::projectRootPath();
+        }
     }
 
     /**

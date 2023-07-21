@@ -16,6 +16,7 @@ $echo = new Result();
 if ($_POST) {
     Variable::clearAllData($_POST);
 
+    $wordId = User::post("wordId");
     $textTarget = User::post("textTarget");
     $textNative = User::post("textNative");
     $comment = User::post("comment");
@@ -23,12 +24,13 @@ if ($_POST) {
     $wordType = User::post("wordType");
 
     if (
+        !Variable::isEmpty($wordId) ||
         !Variable::isEmpty($textTarget) ||
         !Variable::isEmpty($textNative) ||
         !Variable::isEmpty($studyType) ||
         !Variable::isEmpty($wordType)
     ) {
-        $echo->rows = WordService::add($textTarget, $textNative, $comment, $wordType, $studyType);
+        $echo->rows = WordService::update($wordId, $textTarget, $textNative, $comment, $wordType, $studyType);
         $echo->status = true;
     }
 }

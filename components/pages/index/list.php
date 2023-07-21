@@ -4,19 +4,16 @@
         <table id="myTable">
             <thead>
                 <tr>
-                    <th>Column 1</th>
-                    <th>Column 2</th>
+                    <th>ID</th>
+                    <th>Text Target</th>
+                    <th>Text Native</th>
+                    <th>Word Type</th>
+                    <th>Study Type</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Row 1 Data 1</td>
-                    <td>Row 1 Data 2</td>
-                </tr>
-                <tr>
-                    <td>Row 2 Data 1</td>
-                    <td>Row 2 Data 2</td>
-                </tr>
             </tbody>
         </table>
     </div>

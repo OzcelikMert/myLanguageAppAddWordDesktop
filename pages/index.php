@@ -8,7 +8,7 @@ class PageIndex extends Creator {
 
     public function __construct() {
         $this->v = "?v=".date("YmdHis");
-        $this->page_title = "Anasayfa";
+        $this->page_title = "Home";
         parent::__construct();
     }
 
@@ -20,6 +20,7 @@ class PageIndex extends Creator {
         return static::setInclude(array(
             "./components/pages/index/add.php",
             "./components/pages/index/list.php",
+            "./components/pages/index/edit.php"
         ));
     }
 

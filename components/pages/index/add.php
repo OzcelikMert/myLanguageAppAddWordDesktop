@@ -1,9 +1,9 @@
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Add Word & Sentence</h5>
+        <h5 class="card-title"><?= isset($formId) ? "" : "Add Word & Sentence" ?></h5>
         <div class="row">
-            <div class="col-md-7">
-                <form id="addForm">
+            <div class="col-md-12">
+                <form id="<?= isset($formId) ? $formId : "addForm" ?>">
                     <div class="row">
                         <div class="col-md-12">
                             <label for="name" class="form-label">Target Language</label>
@@ -20,31 +20,43 @@
                         <div class="col-md-12 mt-2">
                             <label for="name" class="form-label">Word Type</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="wordType" id="wordType_1" value="1" required checked>
-                                <label class="form-check-label" for="wordType_1">Word</label>
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="wordType" value="1" required checked>
+                                    Word
+                                </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="wordType" id="wordType_2" value="2" required>
-                                <label class="form-check-label" for="wordType_2">Sentence</label>
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="wordType" value="2" required>
+                                    Sentence
+                                </label>
                             </div>
                         </div>
                         <div class="col-md-12 mt-2">
                             <label for="name" class="form-label">Study Type</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="studyType" id="studyType_1" value="1" required checked>
-                                <label class="form-check-label" for="studyType_1">Daily</label>
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="studyType" value="1" required checked>
+                                    Daily
+                                </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="studyType" id="studyType_2" value="2" required>
-                                <label class="form-check-label" for="studyType_2">Weekly</label>
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="studyType" value="2" required>
+                                    Weekly
+                                </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="studyType" id="studyType_3" value="3" required>
-                                <label class="form-check-label" for="studyType_3">Monthly</label>
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="studyType" value="3" required>
+                                    Monthly
+                                </label>
                             </div>
                         </div>
+                        <div class="col-md-12 mt-2">
+                            <button type="submit" class="btn btn-primary w-100"><?= isset($formId) ? "Update" : "Add" ?></button>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-2 w-50 float-end">Ekle</button>
                 </form>
             </div>
         </div>

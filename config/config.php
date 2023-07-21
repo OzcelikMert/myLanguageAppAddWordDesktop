@@ -1,8 +1,12 @@
 <?php
 namespace config;
 
+use myLibrary\php\ProjectConfig;
+
 Class Config {
-    const JsonFileName = "data.json";
+    const jsonFileName = "data.json";
+
+    public static function jsonFilePath() { return ProjectConfig::projectRootPath() . "/" . Config::jsonFileName; }
 }
 
 ?>
