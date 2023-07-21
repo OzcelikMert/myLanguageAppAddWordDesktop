@@ -76,4 +76,8 @@ class WordService {
 
         return $results;
     }
+
+    public static function deleteAll() {
+        return WordLib::writeJsonFile(json_encode([]));
+    }
 }

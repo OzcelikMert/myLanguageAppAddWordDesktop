@@ -1,6 +1,8 @@
 <div class="card mt-3">
     <div class="card-body">
-        <h5 class="card-title">List</h5>
+        <div class="card-title mb-3">
+            <h5>List <button class="btn btn-primary ms-1 exportButton">Export All Words</button></h5>
+        </div>
         <table id="myTable">
             <thead>
                 <tr>

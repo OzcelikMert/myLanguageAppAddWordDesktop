@@ -54,7 +54,7 @@
                             </div>
                         </div>
                         <div class="col-md-12 mt-2">
-                            <button type="submit" class="btn btn-primary w-100"><?= isset($formId) ? "Update" : "Add" ?></button>
+                            <button type="submit" class="btn btn-success w-100"><?= isset($formId) ? "Update" : "Add" ?></button>
                         </div>
                     </div>
                 </form>
