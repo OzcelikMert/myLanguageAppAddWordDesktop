@@ -1,6 +1,7 @@
 $(function() {
     let $table = null;
     let rows = [];
+    let rowId = "";
 
     function initTable() {
         function getDeleteButtonElement(row){
@@ -19,6 +20,8 @@ $(function() {
                 var json = JSON.parse(res);
                 if(json.status){
                     rows = json.rows;
+                    rows = ArrayList.sort(rows, "wordId", ArrayList.SortTypes.DESC);
+
                     if($table == null){
                         $table = new DataTable('#myTable', {
                             responsive: true,
@@ -31,7 +34,8 @@ $(function() {
                                 {data: "wordStudyType", orderable: true, render: function (data, type, row) { return getStudyTypeName(data)}},
                                 {data: "wordId", orderable: false, render: function (data, type, row) { return getUpdateButtonElement(row)}},
                                 {data: "wordId", orderable: false, render: function (data, type, row) { return getDeleteButtonElement(row)}}
-                            ]
+                            ],
+                            order: []
                         });
                     }else {
                         $table.clear();
@@ -169,8 +173,68 @@ $(function() {
         $form.find("input[name='wordType'][value='" + row.wordType + "']").prop('checked', true);
         $form.find("input[name='studyType'][value='" + row.wordStudyType + "']").prop('checked', true);
 
+        rowId = row.wordId;
+
         $("#editModal").modal("toggle");
     });
+
+    $(document).on("submit", "#editForm", function (e) {
+        e.preventDefault();
+
+        let data = $(this).serializeObject();
+
+        if(
+            Variable.isEmpty(data.textTarget) ||
+            Variable.isEmpty(data.textNative) ||
+            Variable.isEmpty(data.wordType) ||
+            Variable.isEmpty(data.studyType)
+        ){
+            Swal.fire({
+                icon: 'error',
+                title: 'Do not leave empty boxes!',
+                text: `Please do not leave empty boxes.`,
+            });
+            return false;
+        }
+
+        $.Toast.showToast({
+            "title": "Updating...",
+            "icon": "loading",
+            "duration": 0
+        });
+
+        $.ajax({
+            url: "api/update.php",
+            type: "POST",
+            data: {wordId: rowId, ...data},
+            success: (res) => {
+                $.Toast.hideToast();
+
+                var json = JSON.parse(res);
+                if(json.status){
+                    initTable();
+
+                    $('#editModal').modal("hide");
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Updated!',
+                        text: `'${data.textNative}' has successfully updated.`,
+                    });
+                }else {
+                    Api.showErrorMessage(json.error_code)
+                }
+            },
+            error: () => {
+                $.Toast.hideToast();
+                Swal.fire({
+                    icon: 'error',
+                    title: "Server Error!",
+                    text: 'Please you should contact to admin.'
+                })
+            }
+        })
+    })
 
     initTable();
 });
