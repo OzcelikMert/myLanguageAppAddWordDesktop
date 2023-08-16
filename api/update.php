@@ -14,12 +14,10 @@ use services\WordService;
 $echo = new Result();
 
 if ($_POST) {
-    Variable::clearAllData($_POST);
-
     $wordId = User::post("wordId");
-    $textTarget = User::post("textTarget");
-    $textNative = User::post("textNative");
-    $comment = User::post("comment");
+    $textTarget = trim(User::post("textTarget"));
+    $textNative = trim(User::post("textNative"));
+    $comment = trim(User::post("comment"));
     $studyType = User::post("studyType");
     $wordType = User::post("wordType");
 
